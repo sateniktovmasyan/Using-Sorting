@@ -5,20 +5,26 @@ class Employee:
         self.wholename = wholename
         self.salary = salary
 
-def choosing():
-    print ("if want an ascending order write 1")
-
-if raw_input = 1:
-    def bubble_sort(collection):
-        length = len(collection)
-        for i in range(length):
-            swapped = False
-            for j in range(length - 1):
+def bubble_sort(collection, ascending):
+    length = len(collection)
+    for i in range(length):
+        swapped = False
+        for j in range(length - 1):
+            if ascending:
                 if collection[j].salary > collection[j + 1].salary:
                     swapped = True
                     collection[j].salary, collection[j + 1].salary = collection[j + 1].salary, collection[j].salary
-            if not swapped: break
-        return collection
+            else:
+                if collection[j].salary < collection[j + 1].salary:
+                    swapped = True
+                    collection[j].salary, collection[j + 1].salary = collection[j + 1].salary, collection[j].salary
+        if not swapped: break
+    return collection
+
+def choosing():
+    print ("if want an ascending order write 1")
+
+if raw_input == 1:
     if __name__ == '__main__':
         try:
             raw_input
@@ -27,19 +33,7 @@ if raw_input = 1:
 
     user_input = raw_input('Enter numbers separated by a comma:\n').strip()
     unsorted = [int(item) for item in user_input.split(',')]
-    print(bubble_sort(unsorted))
-
-else:
-    def bubble_sort1(collection):
-        length = len(collection)
-        for i in range(length):
-            swapped = False
-            for j in range(length - 1):
-                if collection[j].salary < collection[j + 1].salary:
-                    swapped = True
-                    collection[j].salary, collection[j + 1].salary = collection[j + 1].salary, collection[j].salary
-            if not swapped: break
-        return collection
+    print(bubble_sort(unsorted, bool(0)))
 
 if __name__ == '__main__':
     try:
@@ -48,14 +42,23 @@ if __name__ == '__main__':
         raw_input = input
 
     user_input = raw_input('Enter numbers separated by a comma:\n').strip()
-    unsorted = [int(item) for item in user_input.split(',')]
-    print(bubble_sort1(unsorted))
+    unsorted = []
+    user_inp = user_input.split(',')
+    name_index = 1
+    for item in user_inp:
+        newEmployee = Employee("Name" + str(name_index), int(item))
+        name_index += 1
+        unsorted.append(newEmployee)
 
+    #unsorted = [int(item) for item in user_input.split(',')]
+    sorted = bubble_sort(unsorted, bool(1))
+    for sortedElement in sorted:
+        print(sortedElement.wholename + " earns " +str(sortedElement.salary))
 
 def main():
     employees = []
     for i in range(0, 100):
         e1 = Employee("Example 1 " + str(i), random.randint(1,100))
         employees.append(e1)
-    print employees
+    print (employees)
 main()
