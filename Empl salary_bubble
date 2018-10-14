@@ -22,18 +22,13 @@ def bubble_sort(collection, ascending):
     return collection
 
 def choosing():
-    print ("if want an ascending order write 1")
 
-if raw_input == 1:
-    if __name__ == '__main__':
-        try:
-            raw_input
-        except NameError:
-            raw_input = input
+    user_input2 = raw_input("If want an ascending order write 1, else` write 0\n").strip()
+    sorted = bubble_sort(unsorted, bool(int(user_input2)))
 
-    user_input = raw_input('Enter numbers separated by a comma:\n').strip()
-    unsorted = [int(item) for item in user_input.split(',')]
-    print(bubble_sort(unsorted, bool(0)))
+
+    for sortedElement in sorted:
+        print(sortedElement.wholename + " earns " +str(sortedElement.salary))
 
 if __name__ == '__main__':
     try:
@@ -50,15 +45,12 @@ if __name__ == '__main__':
         name_index += 1
         unsorted.append(newEmployee)
 
-    #unsorted = [int(item) for item in user_input.split(',')]
-    sorted = bubble_sort(unsorted, bool(1))
-    for sortedElement in sorted:
-        print(sortedElement.wholename + " earns " +str(sortedElement.salary))
+    choosing()
 
 def main():
     employees = []
     for i in range(0, 100):
         e1 = Employee("Example 1 " + str(i), random.randint(1,100))
         employees.append(e1)
-    print (employees)
+
 main()
